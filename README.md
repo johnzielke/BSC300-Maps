@@ -37,6 +37,8 @@ direct links:
 [![switzerland](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-switzerland.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-switzerland.yml)
 [![united-kingdom](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-united-kingdom.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-united-kingdom.yml)
 
+for Canada/Quebec look at [michellemay fork](https://github.com/michellemay/BSC300-Maps-Canada/tree/master)
+
 # IGPSPORT BSC300 / BSC300T Map Creator
 
 This is a clone from https://github.com/adrianf0/bsc300_maps with an added CI step so github builds maps and ported to python for simpler math (no original code remains). If you are logged in to github you should be able to download the artifacts.
