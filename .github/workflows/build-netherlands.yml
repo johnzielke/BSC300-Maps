@@ -113,10 +113,9 @@ jobs:
         run: |
           /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }} -t tags_minimal_street_only.xml
 
-      - name: "Upload Artifact"
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ github.workflow }}-${{ matrix.maps.name }}-no-street-names
+      - name: zip
+        run: |
+          zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-no-street-names.zip *.map
           path: ./*.map
 
       - name: get tag
@@ -130,7 +129,7 @@ jobs:
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
-          files: ./*.map
+          files: ./*.zip
 
   build-streets-with-names:
     runs-on: ubuntu-latest
@@ -232,10 +231,9 @@ jobs:
         run: |
           /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }} -t tags_minimal_street_only.xml
 
-      - name: "Upload Artifact"
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ github.workflow }}-${{ matrix.maps.name }}-with-street-names
+      - name: zip
+        run: |
+          zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-with-street-names.zip *.map
           path: ./*.map
 
       - name: get tag
@@ -249,7 +247,7 @@ jobs:
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
-          files: ./*.map
+          files: ./*.zip
 
   build-with-water:
     runs-on: ubuntu-latest
@@ -353,10 +351,9 @@ jobs:
         run: |
           /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }} -t tags_with_water.xml
 
-      - name: "Upload Artifact"
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ github.workflow }}-${{ matrix.maps.name }}-with-water
+      - name: zip
+        run: |
+          zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-with-water.zip *.map
           path: ./*.map
 
       - name: get tag
@@ -370,7 +367,7 @@ jobs:
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
-          files: ./*.map
+          files: ./*.zip
 
   build-with-green-stuff:
     runs-on: ubuntu-latest
@@ -488,10 +485,9 @@ jobs:
         run: |
           /usr/bin/time -v python generate_map.py -i tmp_filtered.pbf -c $countrycode -s ${{ matrix.maps.state }} -t tags_with_green_stuff.xml
 
-      - name: "Upload Artifact"
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ github.workflow }}-${{ matrix.maps.name }}-with-green-stuff
+      - name: zip
+        run: |
+          zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-with-green-stuff.zip *.map
           path: ./*.map
 
       - name: get tag
@@ -505,5 +501,5 @@ jobs:
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
-          files: ./*.map
+          files: ./*.zip
 
