@@ -37,6 +37,12 @@ direct links:
 [![switzerland](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-switzerland.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-switzerland.yml)
 [![united-kingdom](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-united-kingdom.yml/badge.svg)](https://github.com/manujedi/BSC300-Maps/actions/workflows/build-united-kingdom.yml)
 
+Data is from openstreemap and hosted on geofabrik. Maps are under the [OpenStreetMap License](https://www.openstreetmap.org/copyright):
+
+© OpenStreetMap contributors
+
+Data available under the ODbL license.
+
 for Canada/Quebec look at [michellemay fork](https://github.com/michellemay/BSC300-Maps-Canada/tree/master)
 
 Also, look at the beautiful people behind Gadgetbridge who support this device and make it possible to use it completely offline. https://codeberg.org/Freeyourgadget/Gadgetbridge/pulls/5211

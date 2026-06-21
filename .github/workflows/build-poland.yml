@@ -41,6 +41,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Setup Env
         run: |
@@ -121,6 +123,19 @@ jobs:
           name: ${{ github.workflow }}-${{ matrix.maps.name }}-no-street-names
           path: ./*.map
 
+      - name: get tag
+        id: tag
+        run: |
+          git fetch --force --tags
+          git tag
+          echo "tag=$(git describe --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
+
+      - name: Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          files: ./*.map
+
   build-streets-with-names:
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -150,6 +165,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Setup Env
         run: |
@@ -229,6 +246,19 @@ jobs:
           name: ${{ github.workflow }}-${{ matrix.maps.name }}-with-street-names
           path: ./*.map
 
+      - name: get tag
+        id: tag
+        run: |
+          git fetch --force --tags
+          git tag
+          echo "tag=$(git describe --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
+
+      - name: Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          files: ./*.map
+
   build-with-water:
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -258,6 +288,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Setup Env
         run: |
@@ -339,6 +371,19 @@ jobs:
           name: ${{ github.workflow }}-${{ matrix.maps.name }}-with-water
           path: ./*.map
 
+      - name: get tag
+        id: tag
+        run: |
+          git fetch --force --tags
+          git tag
+          echo "tag=$(git describe --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
+
+      - name: Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          files: ./*.map
+
   build-with-green-stuff:
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -368,6 +413,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Setup Env
         run: |
@@ -462,4 +509,17 @@ jobs:
         with:
           name: ${{ github.workflow }}-${{ matrix.maps.name }}-with-green-stuff
           path: ./*.map
+
+      - name: get tag
+        id: tag
+        run: |
+          git fetch --force --tags
+          git tag
+          echo "tag=$(git describe --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
+
+      - name: Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          files: ./*.map
 

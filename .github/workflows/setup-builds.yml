@@ -12,21 +12,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v5 
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 
 
       - name: edit Readme
         run: |
           sed -i "1s/.*/# Last Map Update: $(date)/"  README.md
+
+      - name: Generate tag
+        id: tag
+        run: echo "tag=$(date +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
       
-      - name: Commit and push changes
+      - name: Commit, Tag and Push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add README.md
+          git tag ${{ steps.tag.outputs.tag }}
           git commit -m "Update map creation date"
-          git push origin master
+          git push origin main --tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          files: README.md
 
   build-osmosis-cache:
     runs-on: ubuntu-latest
@@ -34,6 +47,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: omsis-cache
         uses: actions/cache/restore@v4
