@@ -131,7 +131,6 @@ jobs:
       - name: zip
         run: |
           zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-no-street-names.zip *.map
-          path: ./*.map
 
       - name: get tag
         id: tag
@@ -264,7 +263,6 @@ jobs:
       - name: zip
         run: |
           zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-with-street-names.zip *.map
-          path: ./*.map
 
       - name: get tag
         id: tag
@@ -399,7 +397,6 @@ jobs:
       - name: zip
         run: |
           zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-with-water.zip *.map
-          path: ./*.map
 
       - name: get tag
         id: tag
@@ -548,7 +545,6 @@ jobs:
       - name: zip
         run: |
           zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-with-green-stuff.zip *.map
-          path: ./*.map
 
       - name: get tag
         id: tag
