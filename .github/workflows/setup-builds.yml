@@ -31,7 +31,7 @@ jobs:
           git add README.md
           git tag ${{ steps.tag.outputs.tag }}
           git commit -m "Update map creation date"
-          git push origin main --tags
+          git push origin master --tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
