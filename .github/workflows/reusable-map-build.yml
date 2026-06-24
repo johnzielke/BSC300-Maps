@@ -8,11 +8,11 @@ on:
         required: true
         type: string
       maps:
-        description: JSON array with objects: name, url, state
+        description: "JSON array with objects: name, url, state"
         required: true
         type: string
       variants:
-        description: JSON array with objects: id, drop_names, include_water, include_green, tag_file
+        description: "JSON array with objects: id, drop_names, include_water, include_green, tag_file"
         required: false
         type: string
         default: |
