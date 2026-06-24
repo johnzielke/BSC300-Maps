@@ -161,3 +161,45 @@ jobs:
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
           files: ./*.zip
+
+  combine-variant-zips:
+    runs-on: ubuntu-latest
+    needs: build-map-variants
+    if: always()
+    strategy:
+      matrix:
+        variant: ${{ fromJson(inputs.variants) }}
+
+    steps:
+      - name: Download all artifacts for variant
+        uses: actions/download-artifact@v5
+        with:
+          pattern: ${{ github.workflow }}-*-${{ matrix.variant.id }}
+          path: variant-artifacts
+
+      - name: Build combined zip for variant
+        run: |
+          shopt -s nullglob
+          zip_files=(variant-artifacts/*/*.zip)
+
+          if [[ ${#zip_files[@]} -eq 0 ]]; then
+            echo "No map artifacts found for variant '${{ matrix.variant.id }}'"
+            exit 1
+          fi
+
+          mkdir -p combined
+
+          for zip_file in "${zip_files[@]}"; do
+            artifact_name=$(basename "$(dirname "$zip_file")")
+            dest_dir="combined/$artifact_name"
+            mkdir -p "$dest_dir"
+            unzip -oq "$zip_file" -d "$dest_dir"
+          done
+
+          zip -r ${{ github.workflow }}-${{ matrix.variant.id }}-all.zip combined
+
+      - name: Upload combined variant artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ github.workflow }}-${{ matrix.variant.id }}-all
+          path: ./${{ github.workflow }}-${{ matrix.variant.id }}-all.zip
