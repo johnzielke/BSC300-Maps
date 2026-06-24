@@ -64,7 +64,7 @@ jobs:
 
       - name: Download
         run: |
-          wget ${{ matrix.map.url }} -O tmp.pbf
+          wget -q ${{ matrix.map.url }} -O tmp.pbf
 
       - name: Convert for filtering
         run: |
