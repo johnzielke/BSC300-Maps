@@ -106,6 +106,12 @@ jobs:
         run: |
           zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-no-street-names.zip *.map
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ github.workflow }}-${{ matrix.maps.name }}-no-street-names
+          path: ./${{ github.workflow }}-${{ matrix.maps.name }}-no-street-names.zip
+
       - name: get tag
         id: tag
         run: |
@@ -211,6 +217,12 @@ jobs:
       - name: zip
         run: |
           zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-with-street-names.zip *.map
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ github.workflow }}-${{ matrix.maps.name }}-with-street-names
+          path: ./${{ github.workflow }}-${{ matrix.maps.name }}-with-street-names.zip
 
       - name: get tag
         id: tag
@@ -319,6 +331,12 @@ jobs:
       - name: zip
         run: |
           zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-with-water.zip *.map
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ github.workflow }}-${{ matrix.maps.name }}-with-water
+          path: ./${{ github.workflow }}-${{ matrix.maps.name }}-with-water.zip
 
       - name: get tag
         id: tag
@@ -441,6 +459,12 @@ jobs:
       - name: zip
         run: |
           zip -r ${{ github.workflow }}-${{ matrix.maps.name }}-with-green-stuff.zip *.map
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ github.workflow }}-${{ matrix.maps.name }}-with-green-stuff
+          path: ./${{ github.workflow }}-${{ matrix.maps.name }}-with-green-stuff.zip
 
       - name: get tag
         id: tag
