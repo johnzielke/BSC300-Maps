@@ -1,4 +1,4 @@
-name: usa-northeast
+name: usa-new-england
 
 on:
   workflow_dispatch:
@@ -14,7 +14,12 @@ jobs:
       countrycode: US
       maps: |
         [
-          {"name":"usa-northeast","url":"https://download.geofabrik.de/north-america/us-northeast-latest.osm.pbf","state":"0000"}
+          {"name":"connecticut","url":"https://download.geofabrik.de/north-america/us/connecticut-latest.osm.pbf","state":"0000"},
+          {"name":"maine","url":"https://download.geofabrik.de/north-america/us/maine-latest.osm.pbf","state":"0000"},
+          {"name":"massachusetts","url":"https://download.geofabrik.de/north-america/us/massachusetts-latest.osm.pbf","state":"0000"},
+          {"name":"new-hampshire","url":"https://download.geofabrik.de/north-america/us/new-hampshire-latest.osm.pbf","state":"0000"},
+          {"name":"rhode-island","url":"https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf","state":"0000"},
+          {"name":"vermont","url":"https://download.geofabrik.de/north-america/us/vermont-latest.osm.pbf","state":"0000"}
         ]
       variants: |
         [
