@@ -1,7 +1,7 @@
 name: usa-northeast
 
 env:
-  countrycode: IE
+  countrycode: US
 
 on:
   workflow_dispatch:
